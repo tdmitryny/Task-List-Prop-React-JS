@@ -25,13 +25,84 @@ body{
   
 }
 
+.Mainbox{
+  display: flex;
+  height: 54.1rem;
+  margin: 8rem 0;
+  box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  overflow: hidden;
 
+}
+
+/* First Box Design  */
 
 .FirstBox{
-  background-color: aqua;
+  background-color: #fff;
+  width: 32.9rem;
+  box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.25);
+  
+}
+.Title-box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2.8rem 2rem 0;
+  padding-bottom:2.8rem ;
+  border-bottom: 0.1rem solid #E5E5E5; 
+}
+
+.Title-inner{
+  color: #2AACB5;
+  font-size: 24px;
+  line-height: 28px;
+}
+
+.SecondBox{
+  background-color: #E9E9E9;
+  width: 100%;
+}
+
+/* List types  */
+
+.Alltasks{
+max-width: 17.3rem;
+margin: 0 auto;
+margin-top: 2rem;
+padding: 1.5rem 0;
+}
+
+.List-name{
+  color: #000000;
+  font-weight: 700;
+  font-size: 1.2rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.List-name::before{
+  position: absolute;
+  content: '';
+  width: .3rem;
+  height: 1.4rem;
+  background-color: #2AACB5;
+  left: -.7rem;
 }
 
 
-.SecondBox{
-  background-color: blanchedalmond;
+.Lists{
+  margin: 1rem 0;
+
+
+}
+
+.List{
+  color: #969A9A;
+  font-size: 1.2rem;
+  list-style: none;
+  cursor: pointer;
+}
+
+.btn-list{
+  cursor: pointer;
 }
