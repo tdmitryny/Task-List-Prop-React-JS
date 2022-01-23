@@ -4,33 +4,42 @@ import { generateId } from './Id'
 
 export function Form(props) {
 
-    const [text, setText] = useState('')
+    const [text, setText] = useState('');
 
-    const handelChnage = (e) => {
+    const handleChange = (e) => {
         setText(e.target.value)
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const newItem = {
-            id: generateId(),
-            taskIn: text,
-        };
 
-        props.inChange(newItem);
-        setText('');
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        if (text.length > 0) {
+            const newTextChange = {
+                id: generateId(),
+                text: text,
+            };
+            props.onAdd(newTextChange);
+            setText('');
+
+        } else {
+            alert('Please type your task')
+        }
+
 
     };
 
 
+
     return (
         <div className="Form">
-            <form className="form-inner" onSubmit={handleSubmit}>
+            <form className="form-inner" onSubmit={handleSubmit} >
                 <label className="text-label">Title:</label>
+
                 <input
-                    value={text}
-                    onChange={handelChnage}
                     className="text-input"
+                    onChange={handleChange}
+                    value={text}
                     type="text"
                     id="title"
                     name="task"
