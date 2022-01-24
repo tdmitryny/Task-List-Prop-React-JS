@@ -233,3 +233,11 @@ text-transform: uppercase;
     font-size: 1.3rem;
     padding-right: 1rem; 
   }
+
+
+
+/* Edit form task */
+
+.Edit-form{
+  display: inline;
+}

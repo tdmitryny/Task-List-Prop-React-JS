@@ -60,10 +60,13 @@ export function SecondBox() {
                         <button className="btn-task" onClick={() => showInput()}>🖊</button>
                         {
 
-                            !show ? list.text : <input type={!show ? "hidden" : "text"}></input>
+                            !show ? list.text :
 
+
+                                <form className="Edit-form">
+                                    <input type={!show ? "hidden" : "text"}></input>
+                                </form>
                         }
-
                     </li>
                     //<Task key={list.id} list={list} />
                 )) : 'No task to show'}
