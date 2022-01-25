@@ -21,7 +21,6 @@ export function SecondBox() {
     const [inputText, setInputText] = useState('');
     const [inputTask, setInputTask] = useState([{
         text: '',
-        isInEditMode: false,
     }]);
 
 
@@ -31,7 +30,7 @@ export function SecondBox() {
     }
 
     //Post and edit text
-    const addInputTask = (input) => {
+    const editInputTask = (input) => {
         setInputTask((inTask) => [input, ...inTask])
     }
 
@@ -45,10 +44,12 @@ export function SecondBox() {
     // 1.Click shows input and hide task
     // 2.Press entering saving new task and revome preveus by updating Task
 
-    const showInput = () => {
-        setShow(show ? false : true)
+    const showInput = (e) => {
+        setShow(show ? false : true); //setted to false
+        setInputTask({ text: inputText }) //Start from this
 
     }
+
     const hideText = () => {
         setTask('')
     }
@@ -60,16 +61,27 @@ export function SecondBox() {
     }
 
     //Edit task
-    const editTask = (e) => {
-        e.preventDefault();
-        const editText = {
-            text: inputText,
-        };
-        addInputTask(editText);
-        inputText('')
+    // const editTask = (e) => {
+    //     e.preventDefault();
+    //     const editText = {
+    //         text: inputText,
+    //     };
+    //     addInputTask(editText);
+    //     inputText('')
 
+    // }
+
+    const inputEdit = () => {
+
+        return <div className="Edit-form">
+            <input
+                value={inputText}
+                onChange={handleInputChnage}
+                type={!show ? "hidden" : "text"}
+            />
+            <button onClick={showInput}>OK</button>
+        </div>
     }
-
 
     return (
         <div className="SecondBox">
@@ -85,15 +97,7 @@ export function SecondBox() {
                         <button className="btn-task" onClick={() => showInput()}>🖊</button>
                         {
 
-                            !show ? list.text :
-
-
-                                <form className="Edit-form" onSubmit={() => editTask()}>
-                                    <input value={inputText} onChange={handleInputChnage} type={!show ? "hidden" : "text"} />
-
-                                </form>
-
-
+                            !show ? list.text : inputEdit()
 
 
                         }
