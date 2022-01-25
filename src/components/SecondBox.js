@@ -79,8 +79,10 @@ export function SecondBox() {
                 onChange={handleInputChnage}
                 type={!show ? "hidden" : "text"}
             />
+
             <button onClick={showInput}>OK</button>
         </div>
+
     }
 
     return (
@@ -97,16 +99,14 @@ export function SecondBox() {
                         <button className="btn-task" onClick={() => showInput()}>🖊</button>
                         {
 
-                            !show ? list.text : inputEdit()
-
+                            !show ? list.text || inputText : inputEdit()
 
                         }
-
                     </li>
                     //<Task key={list.id} list={list} />
                 )) : 'No task to show'}
             </ul>
-
+            {inputText}
 
         </div>
     )
