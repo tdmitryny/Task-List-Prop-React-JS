@@ -8,11 +8,6 @@ export function SecondBox() {
 
     const [task, setTask] = useState([{
         id: generateId(),
-        text: '',
-
-    },
-    {
-        id: generateId(),
         text: 'Hello React JS',
 
     }]);
