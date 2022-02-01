@@ -141,6 +141,16 @@ gap: .8rem;
 
 /* Second Box Design  */
 
+
+.Titles{
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  color: #8A8888;
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+
+
 .SecondBox{
   max-width: 82.5rem;
   margin: 0 auto;
@@ -148,7 +158,6 @@ gap: .8rem;
   width: 100%;
   padding: 0 1.3rem;
 }
-
 
 
 .SecondBox-inner{
@@ -244,4 +253,23 @@ text-transform: uppercase;
 
 .test{
   display: inline;
+}
+
+.Task-todo__box{
+  overflow: scroll;
+  height: 36rem;
+  margin-top: 2rem;
+}
+
+.Date-input__list{
+  float: right;
+  font-weight: bold;
+  font-size: 1.3rem;
+  line-height: 18px;
+  color: #F58A8A;
+  margin-right: 2rem;
+  cursor: pointer;
+
+
+
 }

@@ -5,6 +5,11 @@ import { generateId } from './Id'
 export function Form(props) {
 
     const [text, setText] = useState('');
+    const [date, setDate] = useState(null);
+
+    const dateonChange = (e) => {
+        setDate(e.target.value)
+    }
 
     const handleChange = (e) => {
         setText(e.target.value)
@@ -18,6 +23,7 @@ export function Form(props) {
             const newTextChange = {
                 id: generateId(),
                 text: text,
+                date: date,
             };
             props.onAdd(newTextChange);
             setText('');
@@ -35,7 +41,6 @@ export function Form(props) {
         <div className="Form">
             <form className="form-inner" onSubmit={handleSubmit} >
                 <label className="text-label">Title:</label>
-
                 <input
                     className="text-input"
                     onChange={handleChange}
@@ -44,8 +49,14 @@ export function Form(props) {
                     id="title"
                     name="task"
                     placeholder="Start your task" />
-                {/* <label className="text-label">Due Day:</label>
-                <input className="date-input" type="date" name="date" min="2022-01-01" /> */}
+                <label className="text-label">Due Day:</label>
+                <input className="date-input"
+                    onChange={dateonChange}
+                    value={date}
+                    type="date"
+                    name="date"
+                    min="2022-01-01"
+                />
                 <input className="btn-form" type="submit" value="Create Task" />
             </form>
         </div>
