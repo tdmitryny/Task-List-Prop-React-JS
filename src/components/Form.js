@@ -4,8 +4,14 @@ import { generateId } from './Id'
 
 export function Form(props) {
 
+    // const inputDate = new Date()
+    // const date = inputDate.getDate()
+    // const month = inputDate.getMonth() + 1 // Since getMonth() returns month from 0-11 not 1-12.
+    // const year = inputDate.getFullYear();
+    // const wholeYear = `${month}/${date}/${year}`
+
     const [text, setText] = useState('');
-    const [date, setDate] = useState(null);
+    const [date, setDate] = useState('01/01/2022');//Set value date here
 
     const dateonChange = (e) => {
         setDate(e.target.value)
@@ -55,7 +61,9 @@ export function Form(props) {
                     value={date}
                     type="date"
                     name="date"
-                    min="2022-01-01"
+                    min="01-01-2022"
+                    max="01-01-2030"
+                    pattern="\d{4}-\d{2}-\d{2}"
                 />
                 <input className="btn-form" type="submit" value="Create Task" />
             </form>
