@@ -3,18 +3,18 @@ import { Form } from './Form'
 //import { Task } from './Task'
 import { generateId } from './Id'
 
-const date = new Date().toLocaleDateString('en-EN');
+//const date = new Date().toLocaleDateString('en-EN');
 
 
 
 export function SecondBox() {
-
-    //Set timer here
+    const [seconds, setSeconds] = useState(0)
     const [task, setTask] = useState([{
         id: generateId(),
         text: 'Hello React JS',
-        date: date,
+        second: seconds,
 
+        //date: date,
 
     }]);
 
@@ -27,8 +27,13 @@ export function SecondBox() {
 
 
     //Set timer
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setSeconds(time => time + 1)
+        }, 1000)
 
-
+        return () => clearInterval(interval);
+    }, [seconds])
 
 
 
@@ -45,6 +50,14 @@ export function SecondBox() {
             return item
         }))
     }
+
+    //Changing timer function
+    // const editTimer = () => {
+    //     setTask(task.map((item) => {
+    //         if (item.second === seconds) return seconds
+
+    //     }))
+    // }
 
     //Remove task 
     const removeTask = (id) => {
@@ -97,7 +110,7 @@ export function SecondBox() {
                 <h2 className="Titles">to-do</h2>
                 <ul className="Task-box">
                     {task.length > 0 ? task.map((list) => (
-                        <li className="Task" key={list.id} list={list}>
+                        <li className="Task" key={list.id} >
                             <button className="btn-task" onClick={() => removeTask(list.id)}>✅</button>
                             <button className="btn-task" onClick={() => removeTask(list.id)}>🗑</button>
                             <button className="btn-task" onClick={() => removeTask(list.id)}>❌</button>
@@ -106,16 +119,18 @@ export function SecondBox() {
 
                                 (showID !== list.id) ? list.text : inputEdit(list)
 
+
                             }
 
 
-                            <p className="Date-input__list">{list.date}</p>
+                            <p className="Date-input__list" >{list.second}</p>
+
                         </li>
 
                     )) : 'No task to show'}
                 </ul>
                 <h2 className="Titles">complete</h2>
-
+                <p>Test clicks {seconds}</p>
 
                 <h2 className="Titles">incomplete</h2>
             </div>

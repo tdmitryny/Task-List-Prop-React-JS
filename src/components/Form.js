@@ -5,28 +5,12 @@ import { generateId } from './Id'
 
 export function Form(props) {
 
-    const [deadLine, setDeadLIne] = useState('')
+    //const [deadLine, setDeadLIne] = useState('')
     const [text, setText] = useState('');
     const [date, setDate] = useState('');//Set value date here
 
 
-    useEffect(() => {
 
-        //Testing timer
-        let startCount = 0;
-        function Timer() {
-            if (startCount === 10) {
-                startCount = 0
-            }
-            startCount++;
-
-            console.log(startCount)
-        }
-
-        setInterval(Timer, 1000)
-
-        //Testing timer
-    }, [])
 
     const dateonChange = (e) => {
 
@@ -69,7 +53,7 @@ export function Form(props) {
             const newTextChange = {
                 id: generateId(),
                 text: text,
-                date: date,
+                //date: date,
             };
             props.onAdd(newTextChange);
             setText('');
