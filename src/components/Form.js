@@ -1,29 +1,69 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { generateId } from './Id'
 
+//const dateToSet = new Date().toLocaleDateString('en-EN');
 
 export function Form(props) {
 
-    // const inputDate = new Date()
-    // const date = inputDate.getDate()
-    // const month = inputDate.getMonth() + 1 // Since getMonth() returns month from 0-11 not 1-12.
-    // const year = inputDate.getFullYear();
-    // const wholeYear = `${month}/${date}/${year}`
-
+    const [deadLine, setDeadLIne] = useState('')
     const [text, setText] = useState('');
-    const [date, setDate] = useState('01/01/2022');//Set value date here
+    const [date, setDate] = useState('');//Set value date here
+
+
+    useEffect(() => {
+
+        //Testing timer
+        let startCount = 0;
+        function Timer() {
+            if (startCount === 10) {
+                startCount = 0
+            }
+            startCount++;
+
+            console.log(startCount)
+        }
+
+        setInterval(Timer, 1000)
+
+        //Testing timer
+    }, [])
 
     const dateonChange = (e) => {
+
         setDate(e.target.value)
+
+
     }
+
+
+    // const handleChange = (e) => {
+    //     setText(date => {
+    //         const currentDate = new Date().toLocaleDateString("en-US");
+    //         const setDate = e.target.value
+    //         if (setDate > currentDate) return alert('Your task has been expired')
+    //     }
+    //     )
+    // }
+
+
 
     const handleChange = (e) => {
         setText(e.target.value)
     }
 
 
+    //Set up deadline date
+    // const handleChange = (e) => {
+    //     setDeadLIne(e.target.value);
+    // }
+
+
     const handleSubmit = (e) => {
         e.preventDefault()
+
+        // const currentDate = new Date().toLocaleDateString("en-US");
+        // if (date > currentDate) return alert('Date expired')
+
 
         if (text.length > 0) {
             const newTextChange = {
@@ -63,7 +103,7 @@ export function Form(props) {
                     name="date"
                     min="01-01-2022"
                     max="01-01-2030"
-                    pattern="\d{4}-\d{2}-\d{2}"
+
                 />
                 <input className="btn-form" type="submit" value="Create Task" />
             </form>

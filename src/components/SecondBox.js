@@ -1,17 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form } from './Form'
 //import { Task } from './Task'
 import { generateId } from './Id'
 
 const date = new Date().toLocaleDateString('en-EN');
 
+
+
 export function SecondBox() {
 
-
+    //Set timer here
     const [task, setTask] = useState([{
         id: generateId(),
         text: 'Hello React JS',
         date: date,
+
 
     }]);
 
@@ -21,6 +24,12 @@ export function SecondBox() {
         id: '',
         text: ''
     });
+
+
+    //Set timer
+
+
+
 
 
     //Task create
@@ -43,10 +52,6 @@ export function SecondBox() {
     }
 
     //Edit task
-
-    // 1.Click shows input and hide task
-    // 2.Press entering saving new task and revome preveus by updating Task
-
     const showInput = (item) => {
         setShowId(item.id);
         setInputTask({
@@ -85,7 +90,7 @@ export function SecondBox() {
     return (
         <div className="SecondBox">
             <div className="SecondBox-inner">
-                <p className="Titles">Create new task</p>
+                <h2 className="Titles">Create new task</h2>
             </div>
             <Form onAdd={addTask} onHide={hideText} />
             <div className="Task-todo__box">
@@ -93,6 +98,7 @@ export function SecondBox() {
                 <ul className="Task-box">
                     {task.length > 0 ? task.map((list) => (
                         <li className="Task" key={list.id} list={list}>
+                            <button className="btn-task" onClick={() => removeTask(list.id)}>✅</button>
                             <button className="btn-task" onClick={() => removeTask(list.id)}>🗑</button>
                             <button className="btn-task" onClick={() => removeTask(list.id)}>❌</button>
                             <button className="btn-task" onClick={() => showInput(list)}>🖋</button>
@@ -108,6 +114,10 @@ export function SecondBox() {
 
                     )) : 'No task to show'}
                 </ul>
+                <h2 className="Titles">complete</h2>
+
+
+                <h2 className="Titles">incomplete</h2>
             </div>
 
 
