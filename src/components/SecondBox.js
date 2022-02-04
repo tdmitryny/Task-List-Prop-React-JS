@@ -8,11 +8,11 @@ import { generateId } from './Id'
 
 
 export function SecondBox() {
-    const [seconds, setSeconds] = useState(0)
+    const [seconds, setSeconds] = useState(0);
     const [task, setTask] = useState([{
         id: generateId(),
         text: 'Hello React JS',
-        second: seconds,
+        seconds: seconds,// set it 0
 
         //date: date,
 
@@ -27,13 +27,15 @@ export function SecondBox() {
 
 
     //Set timer
+
+
     useEffect(() => {
         const interval = setInterval(() => {
             setSeconds(time => time + 1)
         }, 1000)
 
         return () => clearInterval(interval);
-    }, [seconds])
+    }, [])
 
 
 
@@ -54,10 +56,16 @@ export function SecondBox() {
     //Changing timer function
     // const editTimer = () => {
     //     setTask(task.map((item) => {
-    //         if (item.second === seconds) return seconds
+    //         if (item.id === seconds)
+    //             newList = item;
+    //         newList.seconds = seconds
 
     //     }))
+
+
     // }
+
+
 
     //Remove task 
     const removeTask = (id) => {
@@ -66,6 +74,8 @@ export function SecondBox() {
 
     //Edit task
     const showInput = (item) => {
+
+
         setShowId(item.id);
         setInputTask({
             id: item.id,
@@ -123,14 +133,15 @@ export function SecondBox() {
                             }
 
 
-                            <p className="Date-input__list" >{list.second}</p>
+                            <p className="Date-input__list" >{list.seconds}</p>
 
                         </li>
 
                     )) : 'No task to show'}
                 </ul>
+                <p>{seconds}</p>
                 <h2 className="Titles">complete</h2>
-                <p>Test clicks {seconds}</p>
+
 
                 <h2 className="Titles">incomplete</h2>
             </div>
