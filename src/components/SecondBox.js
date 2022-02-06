@@ -8,14 +8,13 @@ import { generateId } from './Id'
 
 
 export function SecondBox() {
-    const [second, setSecond] = useState(0);
+    const [seconds, setSeconds] = useState(0);
     const [task, setTask] = useState([{
         id: generateId(),
         text: 'Hello React JS',
-        seconds: second,// set it 0
-
+        status: 'todo',//todo, complete, uncomplete 
+        CreateSecond: seconds, // set it 0
         //date: date,
-
     }]);
 
     const [showID, setShowId] = useState(-1);
@@ -28,24 +27,26 @@ export function SecondBox() {
 
     //Set timer
 
-
     useEffect(() => {
         const interval = setInterval(() => {
-            setSecond(time => time + 1)
+            setSeconds(time => time + 1)
         }, 1000)
+
+        setTask(task.map((item) => {
+            if (seconds - item.CreateSecond > 10 && item.status !== "complete") item.status = "incomplete"
+            return item
+        }))
+
         return () => clearInterval(interval);
-    }, [])
-
-
-
+    }, [seconds])
 
 
 
     //Task create
     const addTask = (newText) => {
-        setTask((list) => [newText, ...list])
+        let newObj = Object.assign({}, newText, { status: 'todo', CreateSecond: seconds })
+        setTask((list) => [newObj, ...list])
     }
-
 
 
     const editTask = () => {
@@ -55,10 +56,11 @@ export function SecondBox() {
         }))
     }
 
-    //Changing timer function
-    const editTimer = () => {
+
+
+    const changeStatusToComplete = (list) => {
         setTask(task.map((item) => {
-            if (item.id) item.seconds = second
+            if (item.id === list.id) item.status = "complete"
             return item
         }))
     }
@@ -72,6 +74,7 @@ export function SecondBox() {
 
     //Edit task
     const showInput = (item) => {
+
         setShowId(item.id);
         setInputTask({
             id: item.id,
@@ -106,6 +109,7 @@ export function SecondBox() {
 
     }
 
+
     return (
         <div className="SecondBox">
             <div className="SecondBox-inner">
@@ -115,31 +119,43 @@ export function SecondBox() {
             <div className="Task-todo__box">
                 <h2 className="Titles">to-do</h2>
                 <ul className="Task-box">
-                    {task.length > 0 ? task.map((list) => (
+                    {
+                        task.length > 0 ? task.map((list) => (list.status === 'todo' &&
+                            <li className="Task" key={list.id}>
+                                <button className="btn-task" onClick={() => changeStatusToComplete(list)}>✅</button>
+                                <button className="btn-task" onClick={() => removeTask(list.id)}>🗑</button>
+                                <button className="btn-task" >❌</button>
+                                <button className="btn-task" onClick={() => showInput(list)}>🖋</button>
+                                {
+
+                                    (showID !== list.id) ? list.text : inputEdit(list)
+
+                                }
+                                <p className="Date-input__list" >{seconds - list.CreateSecond}</p>
+                            </li>
+
+                        )) : 'No task to show'}
+                </ul>
+
+                <h2 className="Titles">complete</h2>
+                <ul className="Task-box">
+                    {task.length > 0 ? task.map((list) => (list.status === 'complete' &&
                         <li className="Task" key={list.id} >
-                            <button className="btn-task" onClick={() => removeTask(list.id)}>✅</button>
                             <button className="btn-task" onClick={() => removeTask(list.id)}>🗑</button>
-                            <button className="btn-task" onClick={() => removeTask(list.id)}>❌</button>
-                            <button className="btn-task" onClick={() => showInput(list)}>🖋</button>
-                            {
-
-                                (showID !== list.id) ? list.text : inputEdit(list)
-
-
-                            }
-
-
-                            <p className="Date-input__list"  >{list.seconds}</p>
-                            {/* <button onClick={editTimer}>Click</button> */}
+                            {list.text}
                         </li>
-
                     )) : 'No task to show'}
                 </ul>
-                <p>{second}</p>
-                <h2 className="Titles">complete</h2>
-
-
                 <h2 className="Titles">incomplete</h2>
+                <ul className="Task-box">
+                    {task.length > 0 ? task.map((list) => (list.status === 'incomplete' &&
+                        <li className="Task" key={list.id} >
+                            <button className="btn-task" onClick={() => removeTask(list.id)}>🗑</button>
+                            <button className="btn-task">⌛️</button>
+                            {list.text}
+                        </li>
+                    )) : 'No task to show'}
+                </ul>
             </div>
 
 
