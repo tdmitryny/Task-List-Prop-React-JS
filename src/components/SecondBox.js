@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Form } from './Form'
-import { Task } from './Task'
-import { generateId } from './Id'
+import { Form } from './Form';
+import { Task } from './Task';
+import { CompleteTask } from './CompleteTask';
+import { IncompleteTask } from './IncompleteTask';
+import { generateId } from './Id';
 
 //const date = new Date().toLocaleDateString('en-EN');
 
@@ -140,20 +142,13 @@ export function SecondBox() {
                 <h2 className="Titles">complete</h2>
                 <ul className="Task-box">
                     {task.length > 0 ? task.map((list) => (list.status === 'complete' &&
-                        <li className="Task" key={list.id} >
-                            <button className="btn-task" onClick={() => removeTask(list.id)}>🗑</button>
-                            {list.text}
-                        </li>
+                        <CompleteTask key={list.id} list={list} onRemoveTask={removeTask} />
                     )) : 'No task to show'}
                 </ul>
                 <h2 className="Titles">incomplete</h2>
                 <ul className="Task-box">
                     {task.length > 0 ? task.map((list) => (list.status === 'incomplete' &&
-                        <li className="Task" key={list.id} >
-                            <button className="btn-task" onClick={() => removeTask(list.id)}>🗑</button>
-                            <button className="btn-task">⌛️</button>
-                            {list.text}
-                        </li>
+                        <IncompleteTask key={list.id} list={list} onRemoveTask={removeTask} />
                     )) : 'No task to show'}
                 </ul>
             </div>

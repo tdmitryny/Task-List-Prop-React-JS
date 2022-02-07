@@ -5,18 +5,29 @@ export function Task({ showID, seconds, list, onChangeStatus, onRemoveTask, onSh
 
 
     return (
-        <li className="Task" key={list.id}>
-            <button className="btn-task" onClick={() => onChangeStatus(list)}>✅</button>
-            <button className="btn-task" onClick={() => onRemoveTask(list.id)}>🗑</button>
-            <button className="btn-task" >❌</button>
-            <button className="btn-task" onClick={() => onShowInput(list)}>🖋</button>
-            {
+        //Todo task
+        <>
+            <li className="Task" key={list.id}>
+                <button className="btn-task" onClick={() => onChangeStatus(list)}>✅</button>
+                <button className="btn-task" onClick={() => onRemoveTask(list.id)}>🗑</button>
+                <button className="btn-task" >❌</button>
+                <button className="btn-task" onClick={() => onShowInput(list)}>🖋</button>
+                {
 
-                (showID !== list.id) ? list.text : onInputEdit(list)
+                    (showID !== list.id) ? list.text : onInputEdit(list)
 
-            }
-            <p className="Date-input__list" >{seconds - list.CreateSecond}</p>
-        </li>
+                }
+                <p className="Date-input__list" >{seconds - list.CreateSecond}</p>
+            </li>
+
+
+
+
+        </>
+
+
+
+
     )
 }
 
