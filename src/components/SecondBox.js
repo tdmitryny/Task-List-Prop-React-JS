@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Form } from './Form'
-//import { Task } from './Task'
+import { Task } from './Task'
 import { generateId } from './Id'
 
 //const date = new Date().toLocaleDateString('en-EN');
@@ -13,8 +13,10 @@ export function SecondBox() {
         id: generateId(),
         text: 'Hello React JS',
         status: 'todo',//todo, complete, uncomplete 
-        CreateSecond: seconds, // set it 0
-        //date: date,
+        CreateSecond: seconds,
+
+
+
     }]);
 
     const [showID, setShowId] = useState(-1);
@@ -121,18 +123,16 @@ export function SecondBox() {
                 <ul className="Task-box">
                     {
                         task.length > 0 ? task.map((list) => (list.status === 'todo' &&
-                            <li className="Task" key={list.id}>
-                                <button className="btn-task" onClick={() => changeStatusToComplete(list)}>✅</button>
-                                <button className="btn-task" onClick={() => removeTask(list.id)}>🗑</button>
-                                <button className="btn-task" >❌</button>
-                                <button className="btn-task" onClick={() => showInput(list)}>🖋</button>
-                                {
+                            <Task key={list.id}
+                                onChangeStatus={changeStatusToComplete}
+                                onRemoveTask={removeTask}
+                                onShowInput={showInput}
+                                onInputEdit={inputEdit}
+                                list={list}
+                                seconds={seconds}
+                                showID={showID}
 
-                                    (showID !== list.id) ? list.text : inputEdit(list)
-
-                                }
-                                <p className="Date-input__list" >{seconds - list.CreateSecond}</p>
-                            </li>
+                            />
 
                         )) : 'No task to show'}
                 </ul>
