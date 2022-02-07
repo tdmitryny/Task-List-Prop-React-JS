@@ -4,8 +4,6 @@ export function Task({ showID, seconds, list, onChangeStatus, onRemoveTask, onSh
 
 
 
-
-
     return (
         <li className="Task" key={list.id}>
             <button className="btn-task" onClick={() => onChangeStatus(list)}>✅</button>
