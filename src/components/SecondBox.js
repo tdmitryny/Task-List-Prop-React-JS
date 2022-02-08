@@ -5,20 +5,17 @@ import { CompleteTask } from './CompleteTask';
 import { IncompleteTask } from './IncompleteTask';
 import { generateId } from './Id';
 
-//const date = new Date().toLocaleDateString('en-EN');
+const date = new Date().toLocaleDateString('en-EN');
 
 
 
 export function SecondBox() {
-    const [seconds, setSeconds] = useState(0);
+
     const [task, setTask] = useState([{
         id: generateId(),
         text: 'Hello React JS',
         status: 'todo',//todo, complete, uncomplete 
-        CreateSecond: seconds,
-
-
-
+        date: date,
     }]);
 
     const [showID, setShowId] = useState(-1);
@@ -31,24 +28,24 @@ export function SecondBox() {
 
     //Set timer
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setSeconds(time => time + 1)
-        }, 1000)
+    // useEffect(() => {
+    //     const interval = setInterval(() => {
+    //         setNewDate(time => time + 1)
+    //     }, 1000)
 
-        setTask(task.map((item) => {
-            if (seconds - item.CreateSecond > 10 && item.status !== "complete") item.status = "incomplete"
-            return item
-        }))
+    //     setTask(task.map((item) => {
+    //         if (newdate - item.CreateDate > 10 && item.status !== "complete") item.status = "incomplete"
+    //         return item
+    //     }))
 
-        return () => clearInterval(interval);
-    }, [seconds])
+    //     return () => clearInterval(interval);
+    // }, [newdate])
 
 
 
     //Task create
     const addTask = (newText) => {
-        let newObj = Object.assign({}, newText, { status: 'todo', CreateSecond: seconds })
+        let newObj = Object.assign({}, newText, { status: 'todo' })
         setTask((list) => [newObj, ...list])
     }
 
@@ -125,14 +122,15 @@ export function SecondBox() {
                 <ul className="Task-box">
                     {
                         task.length > 0 ? task.map((list) => (list.status === 'todo' &&
-                            <Task key={list.id}
+                            <Task
+                                key={list.id}
                                 onChangeStatus={changeStatusToComplete}
                                 onRemoveTask={removeTask}
                                 onShowInput={showInput}
                                 onInputEdit={inputEdit}
                                 list={list}
-                                seconds={seconds}
                                 showID={showID}
+                                date={date}
 
                             />
 

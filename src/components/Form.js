@@ -5,30 +5,16 @@ import { generateId } from './Id'
 
 export function Form(props) {
 
-    //const [deadLine, setDeadLIne] = useState('')
+
     const [text, setText] = useState('');
     const [date, setDate] = useState('');//Set value date here
 
 
 
-
     const dateonChange = (e) => {
-
         setDate(e.target.value)
 
-
     }
-
-
-    // const handleChange = (e) => {
-    //     setText(date => {
-    //         const currentDate = new Date().toLocaleDateString("en-US");
-    //         const setDate = e.target.value
-    //         if (setDate > currentDate) return alert('Your task has been expired')
-    //     }
-    //     )
-    // }
-
 
 
     const handleChange = (e) => {
@@ -36,25 +22,16 @@ export function Form(props) {
     }
 
 
-    //Set up deadline date
-    // const handleChange = (e) => {
-    //     setDeadLIne(e.target.value);
-    // }
-
 
 
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        // const currentDate = new Date().toLocaleDateString("en-US");
-        // if (date > currentDate) return alert('Date expired')
-
-
         if (text.length > 0) {
             const newTextChange = {
                 id: generateId(),
                 text: text,
-                //date: date,
+                date: date,
             };
             props.onAdd(newTextChange);
             setText('');
@@ -88,6 +65,7 @@ export function Form(props) {
                     name="date"
                     min="01-01-2022"
                     max="01-01-2030"
+
 
                 />
                 <input className="btn-form" type="submit" value="Create Task" />

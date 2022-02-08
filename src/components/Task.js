@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-export function Task({ showID, seconds, list, onChangeStatus, onRemoveTask, onShowInput, onInputEdit }) {
 
+export function Task({ showID, list, onChangeStatus, onRemoveTask, onShowInput, onInputEdit }) {
 
+    //const date = new Date().toLocaleDateString('en-EN');
 
     return (
         //Todo task
@@ -17,7 +18,8 @@ export function Task({ showID, seconds, list, onChangeStatus, onRemoveTask, onSh
                     (showID !== list.id) ? list.text : onInputEdit(list)
 
                 }
-                <p className="Date-input__list" >{seconds - list.CreateSecond}</p>
+                {/* Passing date from second box */}
+                <p className="Date-input__list" >{list.date}</p>
             </li>
 
 
