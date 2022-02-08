@@ -1,32 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { generateId } from './Id'
 
-//const dateToSet = new Date().toLocaleDateString('en-EN');
+const currentDate = new Date().toLocaleDateString('en-EN');
 
 export function Form(props) {
 
 
     const [text, setText] = useState('');
-    const [date, setDate] = useState('');//Set value date here
+    const [date, setDate] = useState(''); //Set value date here
+
+    // useEffect(() => {
+    //     const interval = setInterval(() => {
+    //         setDate(date)
+    //     });
 
 
+    //     return () => clearInterval(interval)
 
-    const dateonChange = (e) => {
-        setDate(e.target.value)
+    // }, [date])
 
-    }
-
-
-    const handleChange = (e) => {
-        setText(e.target.value)
-    }
 
 
 
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
         if (text.length > 0) {
             const newTextChange = {
                 id: generateId(),
@@ -51,7 +49,7 @@ export function Form(props) {
                 <label className="text-label">Title:</label>
                 <input
                     className="text-input"
-                    onChange={handleChange}
+                    onChange={(e) => setText(e.target.value)}
                     value={text}
                     type="text"
                     id="title"
@@ -59,7 +57,7 @@ export function Form(props) {
                     placeholder="Start your task" />
                 <label className="text-label">Due Day:</label>
                 <input className="date-input"
-                    onChange={dateonChange}
+                    onChange={(e) => setDate(e.target.value)}
                     value={date}
                     type="date"
                     name="date"

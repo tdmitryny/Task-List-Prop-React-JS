@@ -5,7 +5,7 @@ import { CompleteTask } from './CompleteTask';
 import { IncompleteTask } from './IncompleteTask';
 import { generateId } from './Id';
 
-const date = new Date().toLocaleDateString('en-EN');
+const currentDate = new Date().toLocaleDateString('en-EN');
 
 
 
@@ -15,7 +15,7 @@ export function SecondBox() {
         id: generateId(),
         text: 'Hello React JS',
         status: 'todo',//todo, complete, uncomplete 
-        date: date,
+        //date: date,
     }]);
 
     const [showID, setShowId] = useState(-1);
@@ -45,8 +45,15 @@ export function SecondBox() {
 
     //Task create
     const addTask = (newText) => {
-        let newObj = Object.assign({}, newText, { status: 'todo' })
-        setTask((list) => [newObj, ...list])
+        let newObj = Object.assign({}, newText, { status: 'todo' });
+        const setDate = newObj.date
+        console.log(setDate)
+
+        setTask(task.map((item) => {
+            if (currentDate > setDate && item.status !== "complete") item.status = "incomplete"
+            return item
+        }))
+        setTask((list) => [newObj, ...list]);
     }
 
 
@@ -130,7 +137,7 @@ export function SecondBox() {
                                 onInputEdit={inputEdit}
                                 list={list}
                                 showID={showID}
-                                date={date}
+
 
                             />
 
