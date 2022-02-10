@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 export function Task({ showID, list, onChangeStatus, onRemoveTask, onShowInput, onInputEdit }) {
 
-    //const date = new Date().toLocaleDateString('en-EN');
+
 
     return (
         //Todo task

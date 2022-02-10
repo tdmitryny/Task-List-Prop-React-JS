@@ -1,25 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { generateId } from './Id'
 
-const currentDate = new Date().toLocaleDateString('en-EN');
+
 
 export function Form(props) {
 
 
     const [text, setText] = useState('');
     const [date, setDate] = useState(''); //Set value date here
-
-    // useEffect(() => {
-    //     const interval = setInterval(() => {
-    //         setDate(date)
-    //     });
-
-
-    //     return () => clearInterval(interval)
-
-    // }, [date])
-
-
 
 
 

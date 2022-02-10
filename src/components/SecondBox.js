@@ -13,7 +13,7 @@ export function SecondBox() {
 
     const [task, setTask] = useState([{
         id: generateId(),
-        text: 'Hello React JS',
+        text: 'Upload on server',
         status: 'todo',//todo, complete, uncomplete 
         //date: date,
     }]);
@@ -47,7 +47,7 @@ export function SecondBox() {
     const addTask = (newText) => {
         let newObj = Object.assign({}, newText, { status: 'todo' });
         const setDate = newObj.date
-        console.log(setDate)
+
 
         setTask(task.map((item) => {
             if (currentDate > setDate && item.status !== "complete") item.status = "incomplete"
