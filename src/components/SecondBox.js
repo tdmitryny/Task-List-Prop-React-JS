@@ -9,7 +9,7 @@ const currentDate = new Date().toLocaleDateString('en-EN');
 
 
 
-export function SecondBox() {
+export function SecondBox({ addSecondBox }) {
 
     const [task, setTask] = useState([{
         id: generateId(),
@@ -24,22 +24,6 @@ export function SecondBox() {
         id: '',
         text: ''
     });
-
-
-    //Set timer
-
-    // useEffect(() => {
-    //     const interval = setInterval(() => {
-    //         setNewDate(time => time + 1)
-    //     }, 1000)
-
-    //     setTask(task.map((item) => {
-    //         if (newdate - item.CreateDate > 10 && item.status !== "complete") item.status = "incomplete"
-    //         return item
-    //     }))
-
-    //     return () => clearInterval(interval);
-    // }, [newdate])
 
 
 
@@ -118,14 +102,19 @@ export function SecondBox() {
     }
 
 
+
+    const showNewTask = () => {
+        console.log('New clicked');
+    }
+
     return (
-        <div className="SecondBox">
+        <div className="SecondBox" >
             <div className="SecondBox-inner">
-                <h2 className="Titles">Create new task</h2>
+                <h2 className="Titles" >Create new task</h2>
             </div>
             <Form onAdd={addTask} onHide={hideText} />
             <div className="Task-todo__box">
-                <h2 className="Titles">to-do</h2>
+                <h2 className="Titles" >to-do</h2>
                 <ul className="Task-box">
                     {
                         task.length > 0 ? task.map((list) => (list.status === 'todo' &&
@@ -159,7 +148,7 @@ export function SecondBox() {
             </div>
 
 
-        </div>
+        </div >
     )
 }
 

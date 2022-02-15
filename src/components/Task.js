@@ -11,7 +11,7 @@ export function Task({ showID, list, onChangeStatus, onRemoveTask, onShowInput, 
             <li className="Task" key={list.id}>
                 <button className="btn-task" onClick={() => onChangeStatus(list)}>✅</button>
                 <button className="btn-task" onClick={() => onRemoveTask(list.id)}>🗑</button>
-                <button className="btn-task" >❌</button>
+                <button className="btn-task">❌</button>
                 <button className="btn-task" onClick={() => onShowInput(list)}>🖋</button>
                 {
 

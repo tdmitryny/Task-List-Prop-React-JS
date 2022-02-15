@@ -154,11 +154,11 @@ gap: .8rem;
   color: #969A9A;
 }
 
-.List__link:active{
+
+.List__link:focus{
   color: #000;
   font-weight: 700;
 }
-
 /* Second Box Design  */
 
 

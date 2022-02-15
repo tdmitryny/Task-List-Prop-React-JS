@@ -20,6 +20,7 @@ export function Form(props) {
                 date: date,
             };
             props.onAdd(newTextChange);
+
             setText('');
 
         } else {

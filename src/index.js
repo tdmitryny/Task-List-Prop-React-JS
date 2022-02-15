@@ -1,13 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import showSecondBox from './components/Context'
+
+function Main() {
+
+
+  const [state, setState] = useState(false)
+
+
+  return (
+    <React.StrictMode>
+      <showSecondBox.Provider value={{ state, setState }}>
+        <App />
+      </showSecondBox.Provider>
+    </React.StrictMode>
+  )
+}
 
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Main />,
   document.getElementById('root')
 );
 
